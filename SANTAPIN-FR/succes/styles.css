@@ -1,0 +1,125 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #900028; /* Exact maroon color from image */
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.success-icon {
+  margin-bottom: 30px;
+}
+
+.check-circle {
+  width: 80px;
+  height: 80px;
+  background-color: #ffd700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-circle i {
+  font-size: 40px;
+  color: #900028;
+}
+
+.success-message {
+  margin-bottom: 80px; /* Increased space between message and button */
+}
+
+.success-message p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.rocket {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+.ok-button {
+  width: 120px;
+  padding: 12px;
+  background-color: #ffd700; /* Gold button */
+  color: #900028;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .link-column {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .link-column li {
+    padding-left: 0;
+  }
+
+  .link-column li:before {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .success-message p {
+    font-size: 1rem;
+  }
+
+  .check-circle {
+    width: 70px;
+    height: 70px;
+  }
+
+  .check-circle i {
+    font-size: 35px;
+  }
+
+  .success-message {
+    margin-bottom: 60px;
+  }
+}
