@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
+
+  </head>
+  <body>
+<div class="flex w-full flex-col relative">
+
+    <div class="flex w-full fixed top-0 z-[100] bg-[#E8CF94] h-16  items-center justify-between px-8 shadow">
+        <!-- Logo -->
+        <div class="flex items-center gap-2">
+          <img src="assets/logo.png" alt="Santapin Logo" class="h-10" />
+        </div>
+      
+        <!-- Navigation Links -->
+        <nav class="flex gap-8 text-sm font-semibold">
+          <a href="/index.html" class="text-[#B8860B]">Beranda</a>
+          <a href="/menu.html" class="text-white">Menu</a>
+          <a href="#" class="text-white">Pesan</a>
+          <a href="/reservasi.html" class="text-white">Reservasi</a>
+          <button onclick="logout()" class="text-white cursor-pointer">Logout</a>
+        </nav>
+      </div>
+
+
+        <div class="flex w-full flex-col mt-16 bg-[url(/assets/accent-left.svg)] bg-[#920025] bg-left relative bg-[110vh] bg-no-repeat py-16 items-center justify-center">
+            <div class="flex h-10 w-10 border-2 border-white rounded-full absolute left-4 top-4">
+                <i class="fa-solid fa-arrow-left text-white m-auto text-xl "></i>
+            </div>
+            <div class="bg-yellow-400 text-black w-[90%] max-w-xl rounded-2xl p-6 shadow-lg mt-10">
+                <!-- Header Total -->
+                <div class="flex justify-between items-center mb-4">
+                  <h2 class="text-xl font-bold text-white">Total Pembayaran</h2>
+                  <span class="text-xl font-bold text-white">Rp. 36.630</span>
+                </div>
+              
+                <hr class="border-t border-black mb-4">
+              
+                <!-- Countdown -->
+                <p class="text-right mb-4 font-medium">Bayar dalam <span id="countdown">23 jam 59 menit 59 detik</span></p>
+              
+                <!-- Bank Info -->
+                <div class="flex items-center gap-4">
+                  <img src="/mnt/data/cc1eac6c-1b80-4f20-afbb-ef52a2ebe523.png" alt="Mandiri" class="w-28">
+                  <div>
+                    <h3 class="font-bold text-white">Bank Mandiri</h3>
+                    <p class="text-sm text-gray-700 border-b-2 border-gray-600 pb-1">No. Rek/Virtual Account</p>
+                    <p class="text-lg mt-1 tracking-wide font-semibold">896 0865 6566 6666</p>
+                  </div>
+                </div>
+              </div>
+              
+              
+                </div>
+            </div>
+            
+        </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="bg-[#CC9D2F] text-black pt-4 pb-12 px-6 h-fit">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="flex justify-center">
+        <img src="/assets/logo.png " alt="SANTAPIN" class="h-32">
+      </div>
+      <p class="text-lg font-medium mb-10">Nikmati Setiap Menu Yang Ada Dengan Di Santapin Aja</p>
+  
+      <div class="grid grid-cols-1 md:grid-cols-3 text-left gap-10 md:gap-20 px-6">
+        <!-- Layanan -->
+        <div>
+          <h3 class="font-bold mb-2">Layanan</h3>
+          <ul class="space-y-1">
+            <li>• Cari Restoran</li>
+            <li>• Reservasi Online</li>
+            <li>• Ulasan & Penilaian</li>
+          </ul>
+        </div>
+  
+        <!-- Bantuan & Kebijakan -->
+        <div>
+          <h3 class="font-bold mb-2">Bantuan & Kebijakan</h3>
+          <ul class="space-y-1">
+            <li>• Pusat Bantuan</li>
+            <li>• Kebijakan Privasi</li>
+            <li>• Syarat & Ketentuan</li>
+          </ul>
+        </div>
+  
+        <!-- Ikuti Kami -->
+        <div>
+          <h3 class="font-bold mb-2">Ikuti Kami :</h3>
+          <div class="flex gap-4 mt-2 text-xl">
+            <a href="#" class="hover:text-[#920025]"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="hover:text-[#920025]"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="hover:text-[#920025]"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-[#920025]"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+</div>
+<script type="text/javascript" src="/js/main.js"></script>
+<script>
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const token = localStorage.getItem("token");
+
+
+
+    if (!token) {
+      // Jika token ada: sembunyikan tombol login/daftar
+      window.location.href='/index.html';
+    } 
+
+
+  });
+</script>
+  </body>
+</html>
