@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
+
+  </head>
+  <body>
+<div class="flex w-full flex-col relative">
+<!-- if token is exist hide this navbar -->
+ <!-- start nav -->
+    <div class="flex w-full fixed top-0 z-[100] bg-[#E8CF94] h-16  items-center justify-between px-8 shadow">
+        <!-- Logo -->
+        <div class="flex items-center gap-2">
+          <img src="assets/logo.png" alt="Santapin Logo" class="h-10" />
+        </div>
+      
+        <!-- Navigation Links -->
+         <!-- handle this link when active url then the color is  B8860B -->
+        <nav class="flex gap-8 text-sm font-semibold">
+          <a href="/index.html" class="text-[#B8860B]">Beranda</a>
+          <a href="/menu.html" class="text-white">Menu</a>
+          <a href="#" class="text-white">Pesan</a>
+          <a href="/reservasi.html" class="text-white">Reservasi</a>
+          <button onclick="logout()" class="text-white cursor-pointer">Logout</a>
+        </nav>
+      </div>
+      <!-- end nav -->
+
+
+<div class="flex h-[60dvh] mt-16 bg-[url(/assets/accent-left.svg)] bg-[#920025] bg-left w-full bg-contain bg-no-repeat relative items-start justify-center p-16  flex-col">
+  <!-- sart guest nav if token not exist -->
+    <div class="flex h-8 items-center gap-2 absolute right-4 top-4 text-white font-medium">
+        <a href="/signup/signup.html" class="bg-[#CC9D2F] py-2 px-8 rounded-2xl">Daftar</a>
+        <a href="/login/login.html" class="bg-[#CC9D2F] py-2 px-8 rounded-2xl">Masuk</a>
+    
+    </div>
+    <!-- end guest nav -->
+    <h1 class="text-4xl text-white font-bold leading-10">Saatnya menikmati<br/> pengalaman kuliner<br/> terbaik</h1>
+    <h2 class="text-xl text-white font-medium mt-4">
+        Nikmati hidangan lezat dan reservasi meja dengan mudah di <br/>
+        SANTAPIN!
+    </h2>
+<img src="assets/accent-right.png" class="absolute right-0 h-1/2 bottom-[20px]"/>
+
+</div>
+<div class="flex h-[40dvh] bg-[url('/assets/banner.png')] bg-cover w-full justify-center items-center flex-col gap-2 ">
+    <h1 class="text-4xl text-center text-white font-bold">Menu istimewa yang mencerminkan cita rasa <br/>
+        autentik masakan Padang</h1>
+        <div class="relative inline-block">
+            <!-- Bottom-right border frame -->
+            <div class="absolute inset-0 border-2 border-[#CC9D2F] -translate-x-1 translate-y-1"></div>
+          
+            <!-- Actual button -->
+            <a href="/reservasi.html" class="relative bg-[#CC9D2F] text-white font-bold px-8 py-2">
+              Reservasi
+            </button>
+          </div>
+          
+</div>
+<!-- Footer -->
+<footer class="bg-[#CC9D2F] text-black pt-4 pb-12 px-6 h-fit">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="flex justify-center">
+        <img src="/assets/logo.png " alt="SANTAPIN" class="h-32">
+      </div>
+      <p class="text-lg font-medium mb-10">Nikmati Setiap Menu Yang Ada Dengan Di Santapin Aja</p>
+  
+      <div class="grid grid-cols-1 md:grid-cols-3 text-left gap-10 md:gap-20 px-6">
+        <!-- Layanan -->
+        <div>
+          <h3 class="font-bold mb-2">Layanan</h3>
+          <ul class="space-y-1">
+            <li>• Cari Restoran</li>
+            <li>• Reservasi Online</li>
+            <li>• Ulasan & Penilaian</li>
+          </ul>
+        </div>
+  
+        <!-- Bantuan & Kebijakan -->
+        <div>
+          <h3 class="font-bold mb-2">Bantuan & Kebijakan</h3>
+          <ul class="space-y-1">
+            <li>• Pusat Bantuan</li>
+            <li>• Kebijakan Privasi</li>
+            <li>• Syarat & Ketentuan</li>
+          </ul>
+        </div>
+  
+        <!-- Ikuti Kami -->
+        <div>
+          <h3 class="font-bold mb-2">Ikuti Kami :</h3>
+          <div class="flex gap-4 mt-2 text-xl">
+            <a href="#" class="hover:text-[#920025]"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="hover:text-[#920025]"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="hover:text-[#920025]"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-[#920025]"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+</div>
+<script type="text/javascript" src="/js/main.js"></script>
+ <script>
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const token = localStorage.getItem("token");
+
+    const navbar = document.querySelector(".fixed.top-0"); // navbar utama
+    const guestNav = document.querySelector(".absolute.right-4.top-4"); // login/register
+
+    if (token) {
+      // Jika token ada: sembunyikan tombol login/daftar
+      guestNav.style.display = "none";
+    } else {
+      // Jika tidak ada token: sembunyikan navbar utama
+      navbar.style.display = "none";
+      document.querySelector("body > div > div.flex.h-\\[60dvh\\].mt-16.bg-\\[url\\(\\/assets\\/accent-left\\.svg\\)\\].bg-\\[\\#920025\\].bg-left.w-full.bg-contain.bg-no-repeat.relative.items-start.justify-center.p-16.flex-col").style.marginTop='0px';
+
+    }
+
+    // Highlight nav aktif berdasarkan URL
+    const navLinks = document.querySelectorAll("nav a");
+    navLinks.forEach(link => {
+      const current = window.location.pathname;
+      if (link.getAttribute("href") === current) {
+        link.classList.remove("text-white");
+        link.classList.add("text-[#B8860B]");
+      } else {
+        link.classList.remove("text-[#B8860B]");
+        link.classList.add("text-white");
+      }
+    });
+  });
+</script>
+
+  </body>
+</html>
