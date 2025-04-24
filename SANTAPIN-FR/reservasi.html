@@ -1,0 +1,437 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
+
+  </head>
+  <body>
+    <div id="cartModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-[200] hidden">
+      <div class="bg-[#FFD700] rounded-2xl p-6 w-full max-w-2xl shadow-xl relative">
+        <button onclick="closeModal()" class="absolute top-4 right-4 text-black text-2xl font-bold">&times;</button>
+        <h2 class="text-2xl font-bold text-center text-black mb-4">Detail Reservasi</h2>
+        
+        <div class="grid grid-cols-3 font-semibold text-black border-b pb-2">
+          <div>Menu</div>
+          <div class="text-center">Jumlah</div>
+          <div class="text-right">Total</div>
+        </div>
+        
+        <div class="mt-4 space-y-3 text-black font-medium">
+          <!-- Sample Item -->
+          <div class="grid grid-cols-3 items-center">
+            <div>Nasi Goreng</div>
+            <div class="flex justify-center gap-2 items-center">
+              <button class="bg-red-600 text-white w-6 h-6 rounded">-</button>
+              <span>1</span>
+              <button class="bg-red-600 text-white w-6 h-6 rounded">+</button>
+            </div>
+            <div class="text-right">20000</div>
+          </div>
+          <!-- Tambahkan item lainnya secara dinamis jika perlu -->
+        </div>
+    
+        <div class="mt-6 flex justify-between items-center font-semibold text-black">
+          <span>Total</span>
+          <span>69000</span>
+        </div>
+    
+        <div class="flex justify-between mt-6">
+          <button onclick="confirmReservasi()" class="bg-green-500 text-white px-4 py-2 rounded-xl font-bold hover:bg-green-600">Bayar</button>
+        </div>
+      </div>
+    </div>
+    
+<div class="flex w-full flex-col relative">
+
+    <div class="flex w-full fixed top-0 z-[100] bg-[#E8CF94] h-16  items-center justify-between px-8 shadow">
+        <!-- Logo -->
+        <div class="flex items-center gap-2">
+          <img src="assets/logo.png" alt="Santapin Logo" class="h-10" />
+        </div>
+      
+        <!-- Navigation Links -->
+        <nav class="flex gap-8 text-sm font-semibold">
+          <a href="/index.html" class="text-[#B8860B]">Beranda</a>
+          <a href="/menu.html" class="text-white">Menu</a>
+          <a href="#" class="text-white">Pesan</a>
+          <a href="/reservasi.html" class="text-white">Reservasi</a>
+          <button onclick="logout()" class="text-white cursor-pointer">Logout</a>
+        </nav>
+      </div>
+<div class="flex w-full flex-col mt-16 bg-[url(/assets/accent-left.svg)] bg-[#920025] bg-left bg-[110vh] bg-no-repeat pb-16">
+    <!-- Tombol Submit -->
+
+    <div class="flex w-full  pt-12 px-32 text-white flex-col relative">
+        <div class="flex h-10 w-10 border-2 border-white rounded-full absolute left-4 top-4">
+            <i class="fa-solid fa-arrow-left text-white m-auto text-xl "></i>
+        </div>
+        <button id="cartButton" class="flex items-center justify-center gap-4 font-bold text-xl border-2 h-10 px-4 rounded-sm hover:bg-white text-[white] hover:text-[#FFD700] py-2 absolute left-32  bottom-0 transform  hover:scale-110 ">
+          <i class="fa-solid fa-cart-shopping  m-auto text-xl"></i><h1>  Cart (<span id="cartCount">0</span>)
+          </h1>
+        </button>
+        <h1 class="text-lg font-medium text-center">Hai, ayo Reservasi !</h1>
+        <p class="mt-2 font-medium text-white">
+          <span id="kategoriMakanan" class="font-semibold cursor-pointer underline">Makan</span>
+          <span class="font-thin mx-1">/</span>
+          <span id="kategoriMinuman" class="font-thin cursor-pointer underline">Minum</span>
+        </p>
+        <!-- Form Reservasi -->
+<div class="flex flex-col gap-4 items-center mt-6 text-black font-medium w-full max-w-xl mx-auto">
+  
+  <!-- Input Nama -->
+  <div class="w-full">
+    <label class="text-sm text-white mb-1 inline-block">*Nama</label>
+    <div class="flex items-center bg-[#F5C400] px-4 py-3 rounded-lg gap-2">
+      <i class="fa-solid fa-user text-lg"></i>
+      <input
+        id="name"
+        type="text"
+        placeholder="Masukkan nama"
+        class="bg-transparent outline-none w-full placeholder-black"
+      />
+    </div>
+  </div>
+
+  <!-- Select Hari, Jam, Jumlah Orang -->
+  <div class="flex w-full gap-2">
+    <!-- Hari -->
+
+    <!-- Jam -->
+    <div class="flex items-center bg-[#F5C400] px-4 py-3 rounded-lg gap-2 w-1/3">
+      <i class="fa-solid fa-clock text-lg"></i>
+      <input id="time" type="time" class="bg-transparent outline-none w-full" />
+    </div>
+    <div class="flex items-center bg-[#F5C400] px-4 py-3 rounded-lg gap-2 w-1/3">
+      <i class="fa-solid fa-clock text-lg"></i>
+      <input id="date" type="date" class="bg-transparent outline-none w-full" />
+    </div>
+
+    <div class="flex items-center bg-[#F5C400] px-4 py-3 rounded-lg gap-2 w-1/3">
+      <i class="fa-solid fa-house text-lg"></i>
+      <select id="room" class="bg-transparent outline-none w-full">
+        <option value="indoor">Indoor</option>
+        <option value="outdoor">Outdoor</option>
+
+      </select>
+    </div>
+    <!-- Jumlah Orang -->
+    <div class="flex items-center bg-[#F5C400] px-4 py-3 rounded-lg gap-2 w-1/3">
+      <i class="fa-solid fa-user text-lg"></i>
+      <select id="people" class="bg-transparent outline-none w-full">
+        <option value="1">1 orang</option>
+        <option value="2">2 orang</option>
+        <option value="3">3 orang</option>
+        <option value="4">4 orang</option>
+        <option value="5">5 orang</option>
+        <option value="6">6 orang</option>
+        <option value="7">7 orang</option>
+        <option value="8">8 orang</option>
+
+      </select>
+    </div>
+
+  </div>
+  <div class="flex w-full items-center justify-center text-black">
+    <button onclick="simpanReservasi()" class="mt-4 bg-[#F5C400]  font-bold px-6 py-2 rounded-lg ">
+      Simpan Reservasi
+    </button>
+  </div>
+</div>
+
+    </div>
+    <div id="menuContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full py-16 px-32">
+      <!-- Menu akan di-render di sini -->
+    </div>
+    </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="bg-[#CC9D2F] text-black pt-4 pb-12 px-6 h-fit">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="flex justify-center">
+        <img src="/assets/logo.png " alt="SANTAPIN" class="h-32">
+      </div>
+      <p class="text-lg font-medium mb-10">Nikmati Setiap Menu Yang Ada Dengan Di Santapin Aja</p>
+  
+      <div class="grid grid-cols-1 md:grid-cols-3 text-left gap-10 md:gap-20 px-6">
+        <!-- Layanan -->
+        <div>
+          <h3 class="font-bold mb-2">Layanan</h3>
+          <ul class="space-y-1">
+            <li>• Cari Restoran</li>
+            <li>• Reservasi Online</li>
+            <li>• Ulasan & Penilaian</li>
+          </ul>
+        </div>
+  
+        <!-- Bantuan & Kebijakan -->
+        <div>
+          <h3 class="font-bold mb-2">Bantuan & Kebijakan</h3>
+          <ul class="space-y-1">
+            <li>• Pusat Bantuan</li>
+            <li>• Kebijakan Privasi</li>
+            <li>• Syarat & Ketentuan</li>
+          </ul>
+        </div>
+  
+        <!-- Ikuti Kami -->
+        <div>
+          <h3 class="font-bold mb-2">Ikuti Kami :</h3>
+          <div class="flex gap-4 mt-2 text-xl">
+            <a href="#" class="hover:text-[#920025]"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="hover:text-[#920025]"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="hover:text-[#920025]"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-[#920025]"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+</div>
+<script type="text/javascript" src="/js/main.js"></script>
+<script>
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+  function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+  }
+  
+  function updateCartCount() {
+    document.getElementById("cartCount").textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+  }
+  
+  function addToCart(menu) {
+    const index = cart.findIndex(item => item.id === menu.id);
+    if (index !== -1) {
+      cart[index].qty++;
+    } else {
+      cart.push({ ...menu, qty: 1 });
+    }
+    saveCart();
+  }
+  
+  function renderCartItems() {
+    const container = document.querySelector("#cartModal .mt-4.space-y-3");
+    container.innerHTML = "";
+  
+    let total = 0;
+  
+    cart.forEach((item, index) => {
+      const subtotal = item.harga * item.qty;
+      total += subtotal;
+  
+      const itemEl = document.createElement("div");
+      itemEl.className = "grid grid-cols-3 items-center";
+      itemEl.innerHTML = `
+        <div>${item.nama}</div>
+        <div class="flex justify-center gap-2 items-center">
+          <button onclick="changeQty(${index}, -1)" class="bg-red-600 text-white w-6 h-6 rounded">-</button>
+          <span>${item.qty}</span>
+          <button onclick="changeQty(${index}, 1)" class="bg-red-600 text-white w-6 h-6 rounded">+</button>
+        </div>
+        <div class="text-right">${item.harga * item.qty}</div>
+      `;
+      container.appendChild(itemEl);
+    });
+  
+    document.querySelector("#cartModal .mt-6.flex.justify-between span:last-child").textContent = total;
+  }
+  
+  function changeQty(index, change) {
+    cart[index].qty += change;
+    if (cart[index].qty <= 0) {
+      cart.splice(index, 1);
+    }
+    saveCart();
+    renderCartItems();
+  }
+  
+  document.querySelector(".fa-cart-shopping").parentElement.addEventListener("click", () => {
+    renderCartItems();
+    cartModal.classList.remove("hidden");
+  });
+  
+  function closeModal() {
+    cartModal.classList.add("hidden");
+  }
+  
+  // Tambahkan listener ke tombol “+” menu saat menu di-load
+  const observer = new MutationObserver(() => {
+    document.querySelectorAll("#menuContainer button").forEach((btn, index) => {
+      btn.onclick = () => {
+        const menuCard = btn.closest(".menu-card");
+        const nama = menuCard.querySelector("h3").textContent;
+        const harga = parseInt(menuCard.querySelector("p.font-semibold").textContent.replace(/[^\d]/g, ''));
+        const id = nama.toLowerCase().replace(/\s+/g, "-");
+  
+        addToCart({ id, nama, harga });
+      };
+    });
+  });
+  observer.observe(document.getElementById("menuContainer"), { childList: true, subtree: true });
+  
+  // Load cart count saat page load
+  document.addEventListener("DOMContentLoaded", updateCartCount);
+  </script>
+  
+<script>
+  const cartModal = document.getElementById("cartModal");
+
+  document.querySelector(".fa-cart-shopping").parentElement.addEventListener("click", () => {
+    cartModal.classList.remove("hidden");
+  });
+
+  function closeModal() {
+    cartModal.classList.add("hidden");
+  }
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const kategoriMakanan = document.getElementById("kategoriMakanan");
+  const kategoriMinuman = document.getElementById("kategoriMinuman");
+
+  // Load default: makanan
+  loadMenu("makanan");
+
+  kategoriMakanan.addEventListener("click", () => {
+  kategoriMakanan.classList.add("font-semibold");
+  kategoriMakanan.classList.remove("font-thin");
+
+  kategoriMinuman.classList.remove("font-semibold");
+  kategoriMinuman.classList.add("font-thin");
+
+  loadMenu("makanan");
+});
+
+kategoriMinuman.addEventListener("click", () => {
+  kategoriMinuman.classList.add("font-semibold");
+  kategoriMinuman.classList.remove("font-thin");
+
+  kategoriMakanan.classList.remove("font-semibold");
+  kategoriMakanan.classList.add("font-thin");
+
+  loadMenu("minuman");
+});
+
+
+  function loadMenu(category) {
+    fetch(`http://localhost/santapin-api/user/menu.php?category=${category}`, {
+      method: "GET",
+      headers: {
+        "Authorization": token // Sertakan token di header
+      }
+    })
+      .then(response => response.json())
+      .then(result => {
+        if (result.status && result.data) {
+          const container = document.getElementById("menuContainer");
+          container.innerHTML = "";
+
+          result.data.forEach(menu => {
+            const card = document.createElement("div");
+            card.className = "menu-card bg-[#FFD700] p-4 rounded-xl flex justify-between items-start shadow-xl hover:scale-[102%]";
+
+            card.innerHTML = `
+              <div class="flex flex-col space-y-1 w-2/3">
+                <h3 class="font-bold text-2xl text-black">${menu.namamenu}</h3>
+                <p class="text-xl text-black">${menu.deskripsi}</p>
+                <p class="font-semibold text-black mt-1 text-lg">${formatRupiah(menu.harga)}</p>
+              </div>
+              <div class="flex flex-col items-end justify-between w-1/3">
+                <img src="${menu.url_gambar.replace(/\\/g, '')}" alt="${menu.namamenu}" class="w-40 h-40 object-cover rounded-lg" />
+              <button class="cursor-pointer hover:opacity-80 mt-2 bg-[#920025] text-white rounded-lg w-6 h-6 flex items-center justify-center text-sm font-bold translate-y-[16px] translate-x-[14px] shadow-xl">+</button>
+                </div>
+            `;
+            container.appendChild(card);
+          });
+        } else {
+          alert("Gagal memuat menu.");
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching menu:", error);
+        alert("Terjadi kesalahan saat mengambil data menu.");
+      });
+  }
+
+  function formatRupiah(angka) {
+    return angka.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+  }
+});
+
+</script>
+<script>
+  // Function to collect data and store in localStorage
+  function confirmReservasi(){
+    const dataReserve = localStorage.getItem('dataReservasi');
+    if(dataReserve){
+    window.location.href='/reservasi-konfirmasi.html';
+
+    }else{
+      alert('simpan data terlebih dahulu!');
+    }
+  }
+
+</script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const data = localStorage.getItem('dataReservasi');
+    if (data) {
+      const reservasi = JSON.parse(data);
+
+      document.getElementById('name').value = reservasi.nama || '';
+      document.getElementById('time').value = reservasi.jam || '';
+      document.getElementById('date').value = reservasi.date || '';
+
+      document.getElementById('room').value = reservasi.ruangan || '';
+      document.getElementById('people').value = reservasi.jumlahOrang || '';
+    }
+  });
+
+  function simpanReservasi() {
+    const nama = document.getElementById('name').value;
+    const jam = document.getElementById('time').value;
+    const date = document.getElementById('date').value;
+    const ruangan = document.getElementById('room').value;
+    const jumlahOrang = document.getElementById('people').value;
+
+    const dataReservasi = {
+      nama,
+      jam,
+      date,
+      ruangan,
+      jumlahOrang
+    };
+
+    localStorage.setItem('dataReservasi', JSON.stringify(dataReservasi));
+    alert("Reservasi berhasil disimpan!");
+    // window.location.href = '/reservasi-konfirmasi.html'; // Uncomment kalau mau redirect
+  }
+</script>
+
+<script>
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const token = localStorage.getItem("token");
+
+
+
+    if (!token) {
+      // Jika token ada: sembunyikan tombol login/daftar
+      window.location.href='/index.html';
+    } 
+
+
+  });
+</script>
+  </body>
+</html>
