@@ -1,0 +1,331 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #920025;
+    position: relative;
+    z-index: 10;
+}
+
+.logo img {
+    height: 80px;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-daftar, .btn-masuk {
+    padding: 12px 30px;
+    border-radius: 30px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    background-color: #cc9d2f;
+    transition: all 0.3s ease;
+}
+
+.btn-daftar:hover, .btn-masuk:hover {
+    opacity: 0.9;
+}
+
+/* Hero Section Styles */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    background-color: #920025;
+    position: relative;
+    min-height: 500px;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('pattern.png');
+    background-size: cover;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+.hero-content {
+    max-width: 50%;
+    position: relative;
+    z-index: 2;
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.hero-image {
+    position: relative;
+    z-index: 2;
+}
+
+/* Updated Circle Container and Image Styles */
+.circle-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+}
+
+.circle-image {
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 50% 0 0 50%;
+}
+
+.circle-image::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50% 0 0 50%;
+    border: 5px solid white;
+    z-index: 1;
+}
+
+.circle-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.accent-lines {
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+}
+
+.accent-lines span {
+    display: block;
+    width: 30px;
+    height: 5px;
+    background-color: #cc9d2f;
+    margin: 8px 0;
+    border-radius: 5px;
+}
+
+/* Food Section Styles */
+.food-section {
+    position: relative;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.food-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('food-background.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.7);
+}
+
+.food-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.food-content h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    line-height: 1.3;
+}
+
+.btn-reservasi {
+    padding: 12px 40px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
+    color: white;
+    background-color: #cc9d2f;
+    transition: all 0.3s ease;
+}
+
+.btn-reservasi:hover {
+    opacity: 0.9;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #cc9d2f;
+    padding: 50px;
+    color: #333;
+    text-align: center;
+}
+
+.footer-logo img {
+    height: 60px;
+    margin-bottom: 15px;
+}
+
+.footer-tagline {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.footer-column h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    color: #333;
+    font-size: 20px;
+}
+
+.social-icons a:hover {
+    color: #920025;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+    }
+    
+    .hero-content {
+        max-width: 100%;
+        margin-bottom: 40px;
+    }
+    
+    .hero-content h1 {
+        font-size: 36px;
+    }
+    
+    .circle-container {
+    position: absolute;
+    right: 0;
+    bottom: 10p; /* bisa diganti ke top: 0 kalau mau di pojok kanan atas */
+    z-index: 6;
+}
+
+    .circle-image {
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 50% 0 0 50%;
+}
+
+    
+    .food-content h2 {
+        font-size: 28px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    header {
+        padding: 15px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .logo img {
+        height: 60px;
+    }
+    
+    .auth-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .btn-daftar, .btn-masuk {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .hero-content h1 {
+        font-size: 28px;
+    }
+    
+    .circle-container,
+    .circle-image {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .food-content h2 {
+        font-size: 22px;
+    }
+}
