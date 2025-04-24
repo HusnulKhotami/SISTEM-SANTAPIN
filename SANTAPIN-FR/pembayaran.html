@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
+
+  </head>
+  <body>
+<div class="flex w-full flex-col relative">
+
+    <div class="flex w-full fixed top-0 z-[100] bg-[#E8CF94] h-16  items-center justify-between px-8 shadow">
+        <!-- Logo -->
+        <div class="flex items-center gap-2">
+          <img src="assets/logo.png" alt="Santapin Logo" class="h-12" />
+        </div>
+      
+        <!-- Navigation Links -->
+        <nav class="flex gap-8 text-sm font-semibold">
+          <a href="/index.html" class="text-[#B8860B]">Beranda</a>
+          <a href="/menu.html" class="text-white">Menu</a>
+          <a href="#" class="text-white">Pesan</a>
+          <a href="/reservasi.html" class="text-white">Reservasi</a>
+          <button onclick="logout()" class="text-white cursor-pointer">Logout</a>
+        </nav>
+      </div>
+
+
+        <div class="flex w-full flex-col mt-16 bg-[url(/assets/accent-left.svg)] bg-[#920025] bg-left relative bg-[110vh] bg-no-repeat py-16 items-center justify-center">
+            <div class="flex h-10 w-10 border-2 border-white rounded-full absolute left-4 top-4">
+                <i class="fa-solid fa-arrow-left text-white m-auto text-xl "></i>
+            </div>
+            <h1 class="text-white text-4xl font-extrabold">
+                Pembayaran
+              </h1>
+            <div class="bg-yellow-400 w-[90%] max-w-md rounded-2xl p-6 shadow-lg text-black mt-10">
+                <h2 class="text-center text-2xl font-bold text-white mb-4">Pilih Metode Pembayaran</h2>
+                <hr class="border-t border-white mb-6">
+                <form class="flex flex-col gap-4">
+                  <label class="flex items-center justify-between">
+                    <img src="assets/mandiri.png" alt="Mandiri" class="w-24">
+                    <input type="radio" name="payment" value="mandiri" class="accent-[#920025] w-6 h-6">
+                  </label>
+                  <label class="flex items-center justify-between">
+                    <img src="assets/gopay.png" alt="Gopay" class="w-24">
+                    <input type="radio" name="payment" value="gopay" class="accent-gray-400 w-6 h-6">
+                  </label>
+                  <label class="flex items-center justify-between">
+                    <img src="assets/ovo.png" alt="OVO" class="w-24">
+                    <input type="radio" name="payment" value="ovo" class="accent-gray-400 w-6 h-6">
+                  </label>
+                  <label class="flex items-center justify-between">
+                    <img src="assets/dana.png" alt="DANA" class="w-24">
+                    <input type="radio" name="payment" value="dana" class="accent-gray-400 w-6 h-6">
+                  </label>
+                </form>
+              </div>
+              
+              <div class="w-[90%] max-w-md mt-6">
+                <button onclick="confirmPembayaran()" class="w-full bg-yellow-400 text-white text-lg font-bold py-3 rounded-2xl shadow-md hover:brightness-110 transition">
+                  Kirim
+                </button>
+              </div>
+              
+                </div>
+            </div>
+            
+        </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="bg-[#CC9D2F] text-black pt-4 pb-12 px-6 h-fit">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="flex justify-center">
+        <img src="/assets/logo.png " alt="SANTAPIN" class="h-32">
+      </div>
+      <p class="text-lg font-medium mb-10">Nikmati Setiap Menu Yang Ada Dengan Di Santapin Aja</p>
+  
+      <div class="grid grid-cols-1 md:grid-cols-3 text-left gap-10 md:gap-20 px-6">
+        <!-- Layanan -->
+        <div>
+          <h3 class="font-bold mb-2">Layanan</h3>
+          <ul class="space-y-1">
+            <li>• Cari Restoran</li>
+            <li>• Reservasi Online</li>
+            <li>• Ulasan & Penilaian</li>
+          </ul>
+        </div>
+  
+        <!-- Bantuan & Kebijakan -->
+        <div>
+          <h3 class="font-bold mb-2">Bantuan & Kebijakan</h3>
+          <ul class="space-y-1">
+            <li>• Pusat Bantuan</li>
+            <li>• Kebijakan Privasi</li>
+            <li>• Syarat & Ketentuan</li>
+          </ul>
+        </div>
+  
+        <!-- Ikuti Kami -->
+        <div>
+          <h3 class="font-bold mb-2">Ikuti Kami :</h3>
+          <div class="flex gap-4 mt-2 text-xl">
+            <a href="#" class="hover:text-[#920025]"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="hover:text-[#920025]"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="hover:text-[#920025]"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-[#920025]"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+</div>
+<script type="text/javascript" src="/js/main.js"></script>
+<script>
+  function confirmPembayaran() {
+    const metodePembayaran = document.querySelector('input[name="payment"]:checked');
+
+    if (metodePembayaran) {
+      console.log("Metode pembayaran yang dipilih:", metodePembayaran.value);
+      localStorage.setItem('payment', metodePembayaran.value);
+      window.location.href = '/pembayaran-sukses.html';
+    } else {
+      alert("Belum memilih metode pembayaran.");
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      window.location.href = '/index.html';
+    }
+  });
+</script>
+
+  </body>
+</html>
