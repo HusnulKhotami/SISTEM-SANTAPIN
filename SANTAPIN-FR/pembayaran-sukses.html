@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
+
+  </head>
+  <body>
+<div class="flex w-full flex-col relative">
+
+    <div class="flex w-full fixed top-0 z-[100] bg-[#E8CF94] h-16  items-center justify-between px-8 shadow">
+        <!-- Logo -->
+        <div class="flex items-center gap-2">
+          <img src="assets/logo.png" alt="Santapin Logo" class="h-10" />
+        </div>
+      
+        <!-- Navigation Links -->
+        <nav class="flex gap-8 text-sm font-semibold">
+          <a href="/index.html" class="text-[#B8860B]">Beranda</a>
+          <a href="/menu.html" class="text-white">Menu</a>
+          <a href="#" class="text-white">Pesan</a>
+          <a href="/reservasi.html" class="text-white">Reservasi</a>
+          <button onclick="logout()" class="text-white cursor-pointer">Logout</a>
+        </nav>
+      </div>
+
+
+        <div class="flex w-full flex-col mt-16 bg-[url(/assets/accent-left.svg)] bg-[#920025] bg-left relative bg-[110vh] bg-no-repeat pb-16 items-center justify-center">
+            <div class="flex h-10 w-10 border-2 border-white rounded-full absolute left-4 top-4">
+                <i class="fa-solid fa-arrow-left text-white m-auto text-xl "></i>
+            </div>
+            
+                <div class="flex flex-col items-center justify-center min-h-[90dvh] bg-[#920025] text-center text-white px-4">
+                    <!-- Judul -->
+                    <h1 class="text-2xl font-bold mb-6">Pembayaran Sukses!</h1>
+                  
+                    <!-- Ikon Centang -->
+                    <div class="bg-yellow-400 w-20 h-20 rounded-full flex items-center justify-center mb-6">
+                      <svg class="w-10 h-10 text-[#920025]" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" clip-rule="evenodd" />
+                      </svg>
+                    </div>
+                  
+                    <!-- Pesan -->
+                    <p class="text-lg font-bold mb-10">"Terima kasih atas reservasi Anda di SANTAPIN!"</p>
+                  
+                    <!-- Tombol -->
+                    <button onclick="confirmSukses()" class="bg-yellow-400 text-white font-semibold px-8 py-2 rounded shadow hover:brightness-110 transition">
+                      Oke
+                    </button>
+                  </div>
+                  
+                </div>
+            </div>
+            
+        </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="bg-[#CC9D2F] text-black pt-4 pb-12 px-6 h-fit">
+    <div class="max-w-6xl mx-auto text-center">
+      <div class="flex justify-center">
+        <img src="/assets/logo.png " alt="SANTAPIN" class="h-32">
+      </div>
+      <p class="text-lg font-medium mb-10">Nikmati Setiap Menu Yang Ada Dengan Di Santapin Aja</p>
+  
+      <div class="grid grid-cols-1 md:grid-cols-3 text-left gap-10 md:gap-20 px-6">
+        <!-- Layanan -->
+        <div>
+          <h3 class="font-bold mb-2">Layanan</h3>
+          <ul class="space-y-1">
+            <li>• Cari Restoran</li>
+            <li>• Reservasi Online</li>
+            <li>• Ulasan & Penilaian</li>
+          </ul>
+        </div>
+  
+        <!-- Bantuan & Kebijakan -->
+        <div>
+          <h3 class="font-bold mb-2">Bantuan & Kebijakan</h3>
+          <ul class="space-y-1">
+            <li>• Pusat Bantuan</li>
+            <li>• Kebijakan Privasi</li>
+            <li>• Syarat & Ketentuan</li>
+          </ul>
+        </div>
+  
+        <!-- Ikuti Kami -->
+        <div>
+          <h3 class="font-bold mb-2">Ikuti Kami :</h3>
+          <div class="flex gap-4 mt-2 text-xl">
+            <a href="#" class="hover:text-[#920025]"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="hover:text-[#920025]"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="hover:text-[#920025]"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-[#920025]"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+</div>
+<script type="text/javascript" src="/js/main.js"></script>
+<script>
+
+  function confirmSukses() {
+    const dataReservasi = JSON.parse(localStorage.getItem("dataReservasi"));
+    const payment = localStorage.getItem("payment");
+    const cart = JSON.parse(localStorage.getItem("cart"));
+
+    if (!dataReservasi || !payment || !cart) {
+      alert("Data belum lengkap");
+      return;
+    }
+
+    const data = {
+      ...dataReservasi,
+      payment: payment,
+      cart: cart,
+      token: token
+    };
+
+    fetch("http://localhost/santapin-api/user/storeReservasi.php", {
+      method: "POST",
+      headers: {
+      "Content-Type": "application/json",
+      "Authorization": localStorage.getItem("token") // <== ini penting
+    },
+      body: JSON.stringify(data)
+    })
+      .then(response => response.json())
+      .then(result => {
+        if (result.status) {
+          alert("Reservasi berhasil disimpan!");
+          localStorage.clear(); // Hapus semua item
+
+          if (token) {
+            localStorage.setItem('token', token); // Simpan kembali token
+          }
+
+          window.location.href='/index.html'
+        } else {
+          alert("Gagal menyimpan reservasi: " + result.message);
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    if (!token) {
+      window.location.href='/index.html';
+    } 
+  });
+</script>
+
+  </body>
+</html>
