@@ -1,0 +1,339 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+body {
+  background-color: #900028; /* Exact maroon color from image */
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  overflow: hidden; /* Prevent scrolling */
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  overflow-y: auto; /* Allow vertical scrolling only if needed on small screens */
+  position: relative;
+}
+
+/* Back button styling */
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.back-button button {
+  background-color: #900028;
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Content styling for different pages */
+.verification-content,
+.registration-content,
+.login-content,
+.success-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+  width: 100%;
+  padding: 60px 20px 20px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #ffd700; /* Gold color for the heading */
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+/* User icon and lock icon styling */
+.user-icon,
+.lock-icon,
+.success-icon {
+  margin-bottom: 30px;
+}
+
+.user-circle,
+.check-circle {
+  width: 80px;
+  height: 80px;
+  background-color: #ffd700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-circle i,
+.check-circle i {
+  font-size: 40px;
+  color: #900028;
+}
+
+.lock-icon img {
+  width: 60px;
+  height: auto;
+}
+
+/* Form styling */
+.form-container {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-group {
+  width: 100%;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.form-input,
+.verification-input {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+}
+
+/* Button styling */
+.verify-button,
+.register-button,
+.login-button,
+.ok-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #ffd700; /* Gold button */
+  color: #900028;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.ok-button {
+  width: 120px;
+}
+
+/* Success message styling */
+.success-message {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.success-message p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.rocket {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+/* Instruction text styling */
+.instruction {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+  max-width: 300px;
+}
+
+.help-text {
+  font-size: 0.75rem;
+  text-align: center;
+  line-height: 1.5;
+  max-width: 300px;
+}
+
+.resend {
+  color: #ffd700;
+  cursor: pointer;
+}
+
+/* Social login styling */
+.divider {
+  width: 100%;
+  text-align: center;
+  margin: 20px 0;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 35%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+.divider span {
+  background-color: #900028;
+  padding: 0 10px;
+  font-size: 0.85rem;
+  position: relative;
+  z-index: 1;
+}
+
+.social-login {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.social-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-btn i {
+  font-size: 1.2rem;
+}
+
+.google i {
+  color: #db4437;
+}
+
+.facebook i {
+  color: #4267b2;
+}
+
+.twitter i {
+  color: #1da1f2;
+}
+
+.forgot-password {
+  margin-top: 10px;
+}
+
+.forgot-password a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow: auto; /* Allow scrolling on mobile */
+  }
+
+  .container {
+    height: auto;
+    min-height: 100vh;
+    overflow: auto;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .link-column {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .link-column li {
+    padding-left: 0;
+  }
+
+  .link-column li:before {
+    display: none;
+  }
+
+  footer {
+    height: auto;
+    min-height: 132px; /* Reduced from 220px to 60% */
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .user-circle,
+  .check-circle {
+    width: 70px;
+    height: 70px;
+  }
+
+  .user-circle i,
+  .check-circle i {
+    font-size: 35px;
+  }
+
+  .social-login {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
