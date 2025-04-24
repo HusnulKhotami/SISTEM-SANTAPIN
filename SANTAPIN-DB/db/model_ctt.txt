@@ -1,0 +1,44 @@
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  role ENUM('admin', 'user') DEFAULT 'user',
+  token VARCHAR(255) DEFAULT NULL
+);
+
+CREATE TABLE menu (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nama VARCHAR(100),
+    namamenu VARCHAR(100),
+    deskripsi TEXT,
+    harga VARCHAR(100),
+    url_gambar VARCHAR(100)
+);
+ALTER TABLE menu 
+ADD COLUMN category VARCHAR(50) DEFAULT 'makanan';
+
+
+INSERT INTO menu (nama, namamenu, deskripsi, harga, url_gambar) VALUES
+('Nasi Goreng', 'Nasi Goreng', 'Nasi goreng, lalapan, telur dadar', '20000', '/assets/nasigoreng.png'),
+('Nasi Goreng', 'Nasi Goreng', 'Nasi goreng, lalapan, telur dadar', '20000', '/assets/rendang.jpg'),
+('Ayam Gulai', 'Ayam Gulai', 'Nasi goreng, lalapan, telur dadar', '20000', '/assets/ayamgulai.jpg'),
+('Ayam Bakar', 'Ayam Bakar', 'Nasi goreng, lalapan, telur dadar', '20000', '/assets/ayambakar.png'),
+('Ayam Pop', 'Ayam Pop', 'Nasi goreng, lalapan, telur dadar', '20000', '/assets/ayampop.png'),
+('Daging Dendeng', 'Daging Dendeng', 'Nasi goreng, lalapan, telur dadar', '20000', '/assets/dendeng.png'),
+('Cumi Balado', 'Cumi Balado', 'Nasi goreng, lalapan, telur dadar', '20000', '/assets/cumi.png'),
+('Nasi Goreng', 'Nasi Goreng', 'Nasi goreng, lalapan, telur dadar', '20000', '/assets/nasigoreng.png'),
+('Nasi Goreng', 'Nasi Goreng', 'Nasi goreng, lalapan, telur dadar', '20000', '/assets/nasigoreng.png'),
+('Nasi Goreng', 'Nasi Goreng', 'Nasi goreng, lalapan, telur dadar', '20000', '/assets/nasigoreng.png');
+
+CREATE TABLE pesanan (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nama VARCHAR(100) NOT NULL,
+  tanggal DATE NOT NULL,
+  jam TIME NOT NULL,
+  ruangan ENUM('indoor', 'outdoor') NOT NULL,
+  jumlah_orang INT NOT NULL,
+  payment_method ENUM('mandiri', 'gopay', 'ovo', 'dana') NOT NULL,
+  cart JSON NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  user_id INT(10)
+);
